@@ -4,4 +4,4 @@
 
 | File | Project | Status |
 |---|---|---|
-| document-management-system-test-plan.md | Document Management Platform | Draft |
+| data-management-system-test-plan.md | Document Management Platform | Draft |
