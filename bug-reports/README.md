@@ -11,7 +11,7 @@ Bugs logged in Jira during manual testing of a commercial
 HR recruitment and candidate management platform.
 
 **Total bugs found:** 70+
-<p>**Shown below:** 3 selected examples</p>
+**Shown below:** 3 selected examples
 
 | File | Bug ID | Summary | Severity | Status |
 |---|---|---|---|---|
