@@ -13,7 +13,17 @@ Currently preparing for ISTQB Foundation Level certification.
 - Structured manual test cases across multiple application modules
 - Bug reports with full reproduction steps, severity and priority
 - Test plan documentation
-- Tools: Jira · Azure DevOps · Excel · Postman
+
+## Tools and technologies
+
+| Tool | Used for |
+|---|---|
+| Jira | Bug tracking — HR recruitment platform |
+| Azure DevOps | Bug tracking — document management platform |
+| Qase | Test case management |
+| Excel | Test documentation |
+| Chrome / Safari | Manual testing |
+| GitHub | Portfolio and version control |
 
 ## Contact
 LinkedIn: www.linkedin.com/in/simona-rokaite-099175223
