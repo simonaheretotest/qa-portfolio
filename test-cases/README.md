@@ -28,16 +28,15 @@ formal requirements documentation being available.
 | Tax Rates | 8 |
 | Projects | 8 |
 | General | 4 |
-| Projects — Locations | 12 |
-| Projects — Schedule | 10 |
-| **Total** | **91** |
+| Projects — Locations | 11 |
+| Projects — Schedule | 9 |
+| **Total** | **89** |
 
 ### Priority breakdown
 
 | Priority | Count |
 |---|---|
-| Critical | 11 |
-| High | 27 |
+| High | 36 |
 | Medium | 38 |
 | Low | 15 |
 
