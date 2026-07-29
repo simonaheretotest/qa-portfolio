@@ -52,3 +52,15 @@ formal requirements documentation being available.
 ## Tools used
 
 Qase · Jira · Azure DevOps · Manual testing · Exploratory testing
+
+## Screenshots
+
+**All suites — 11 modules, 89 test cases**
+![Suites overview](qase-suites-overview.png)
+
+**Users module — 12 test cases with priority indicators**
+![Users suite](qase-users-suite.png)
+
+**Individual test case — showing description, 
+pre-conditions, post-conditions, steps and attributes**
+![Test case detail](qase-test-case-detail.png)
