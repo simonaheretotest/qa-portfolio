@@ -11,6 +11,7 @@ Bugs logged in Jira during manual testing of a commercial
 HR recruitment and candidate management platform.
 
 **Total bugs found:** 70+
+
 **Shown below:** 3 selected examples
 
 | File | Bug ID | Summary | Severity | Status |
@@ -37,15 +38,15 @@ testing of a Lithuanian staffing document management system.
 
 ## Bug patterns observed across both projects
 
-- **Input validation failures** — system accepts invalid, negative
+- **Input validation failures** - system accepts invalid, negative
   or out-of-range values without blocking
-- **Duplicate data not prevented** — system allows duplicate names,
+- **Duplicate data not prevented** - system allows duplicate names,
   codes and series numbers
-- **Raw backend errors exposed to users** — technical messages
+- **Raw backend errors exposed to users** - technical messages
   shown instead of user-friendly text
-- **Silent failures** — actions appear to succeed but data is
+- **Silent failures** - actions appear to succeed but data is
   missing or incomplete
-- **Missing functionality** — features that do not respond with
+- **Missing functionality** - features that do not respond with
   no feedback to the user
 
 ---
