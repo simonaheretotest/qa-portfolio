@@ -1,0 +1,698 @@
+{
+  "info": {
+    "_postman_id": "8ff25729-dd97-4c12-a5fe-546335f8f2a2",
+    "name": "Valentino Artisan Coffee House API",
+    "description": "An API for managing orders and products at a coffee place named Valentino's Artisan Coffee House.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58632251",
+    "_collection_link": "https://go.postman.co/collection/58632251-8ff25729-dd97-4c12-a5fe-546335f8f2a2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "status",
+      "item": [
+        {
+          "name": "Get API status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200);\n});\n\npm.test(\"Headers\", function () {\n   \n    pm.expect(pm.response.headers.get('x-powered-by')).to.eql('Express');\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "status"
+              ]
+            },
+            "description": "Retrieve the current status of the API"
+          },
+          "response": [
+            {
+              "name": "API status",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "enabled": true
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"status\": \"<string>\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "Get the status of the API."
+    },
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "Get all products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "5",
+                  "description": "The page number to fetch",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "cookie",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "3",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieve a paginated list of products, 10 products per page"
+          },
+          "response": [
+            {
+              "name": "A list of products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products?page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "description": "The page number to fetch",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "enabled": true
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"name\": \"<string>\",\n    \"isAvailable\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"name\": \"<string>\",\n    \"isAvailable\": \"<boolean>\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get single product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "let response;\npm.test(\"Response body is JSON\", function () {\n    pm.response.to.be.json;\n    response = pm.response.json();\nconsole.log(response['product-description']);\n});\n\npm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200)});\n\npm.test(\"Product details are correct\", function () {\n       pm.expect(response).to.have.property('name');\n       pm.expect(response.name).to.be.a('string');\n    pm.expect(response.id).to.eql(parseInt(pm.collectionVariables.get('productID')));\n    pm.expect(response.name).to.eql(\"Espresso\");\n    pm.expect(response.isAvailable).to.eql(true);\n});\n\npm.test('Schema is valid', function () {\n    const schema = {\n        type: 'object',\n        properties: {\n            id: { type: 'integer' },\n            category: { type: 'string' },\n            name: { type: 'string' },\n            isAvailable: { type: 'boolean' },\n            'product-description': { type: 'string' },\n            additionalText: { type: 'string' }\n        },\n        required: ['id', 'category', 'name', 'isAvailable', 'product-description'],\n        additionalProperties: false\n    };\n    pm.response.to.have.jsonSchema(schema);\n});\n"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/:productId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                ":productId"
+              ],
+              "variable": [
+                {
+                  "key": "productId",
+                  "value": "1001"
+                }
+              ]
+            },
+            "description": "Retrieve a single product by specifying the product ID."
+          },
+          "response": [
+            {
+              "name": "A list of products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products?page=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "description": "The page number to fetch",
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "enabled": true
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"name\": \"<string>\",\n    \"isAvailable\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"category\": \"<string>\",\n    \"name\": \"<string>\",\n    \"isAvailable\": \"<boolean>\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "clients",
+      "item": [
+        {
+          "name": "Register a new client",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200);\n});\n\nconst body = pm.response.json();\n   const newKey = body.apiKey || body.key || body.token;\n   pm.test(\"API key returned\", function () {\n       pm.expect(newKey, 'No API key found in the response').to.be.a('string');\n   });\n   pm.collectionVariables.set('apiKey', newKey);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"{{$randomExampleEmail}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "text"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients"
+              ]
+            },
+            "description": "Register a new API client by providing an email address"
+          },
+          "response": [
+            {
+              "name": "Client registered",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/clients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clients"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "enabled": true
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"value\": \"reference #/components/schemas/ApiClient not found in the OpenAPI spec\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "Create a new order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "\npm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n    pm.expect(pm.response.code).to.eql(201);\n});\n\nlet response;\npm.test(\"Response body is JSON\", function () {\n    pm.response.to.be.json;\n    response = pm.response.json();\npm.collectionVariables.set('orderId', response.id);\n});\n\npm.test('Customer name', function (){\n    pm.expect(response.customerName).to.eql(pm.collectionVariables.get('customerName'));\n}) ;\n\n\npm.test('Order ID format', function (){\n    pm.expect(response.id).to.match(/^[A-Z0-9]{9,10}$/);\n});\n\npm.test('Schema is valid', function () {\n    const schema = {\n        type: 'object',\n        properties: {\n            id: { type: 'string', pattern: '^[A-Z0-9]{9,10}$' },\n            clientId: { type: 'string' },\n            created: { type: 'string', format: 'date-time' },\n            customerName: { type: 'string' },\n            products: {\n                type: 'array',\n                items: {\n                    type: 'object',\n                    properties: {\n                        id: { type: 'integer' },\n                        quantity: { type: 'integer' }\n                    },\n                    required: ['id', 'quantity']\n                }\n            }\n        },\n        required: ['id', 'clientId', 'created', 'customerName', 'products'],\n        additionalProperties: false\n    };\n    pm.response.to.have.jsonSchema(schema);\n});"
+                ]
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('customerName', pm.variables.replaceIn('{{$randomFullName}}'));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"{{customerName}}\",\n  \"products\": [\n    {\n      \"id\": 1001,\n      \"quantity\": 1\n    },\n    {\n      \"id\": 2002,\n      \"quantity\": 3\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Place a new order by providing customer details and ordered products"
+          },
+          "response": [
+            {
+              "name": "Create a new order",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerName\": \"{{customerName}}\",\n  \"products\": [\n    {\n      \"id\": 1001,\n      \"quantity\": 1\n    },\n    {\n      \"id\": 2002,\n      \"quantity\": 3\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-length",
+                  "value": "171"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 07 Oct 2026 11:55:11 GMT"
+                },
+                {
+                  "key": "etag",
+                  "value": "W/\"ab-LCRd8vdADjfLcIB6Lq+98vc5xng\""
+                },
+                {
+                  "key": "nel",
+                  "value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+                },
+                {
+                  "key": "report-to",
+                  "value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=yA7%2BaF7IA8SvH6Va5eUxrNzuxRVThBFzDJJZ1oBeeFI%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1791374111\"}],\"max_age\":3600}"
+                },
+                {
+                  "key": "reporting-endpoints",
+                  "value": "heroku-nel=\"https://nel.heroku.com/reports?s=yA7%2BaF7IA8SvH6Va5eUxrNzuxRVThBFzDJJZ1oBeeFI%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1791374111\""
+                },
+                {
+                  "key": "server",
+                  "value": "Heroku"
+                },
+                {
+                  "key": "via",
+                  "value": "1.1 heroku-router"
+                },
+                {
+                  "key": "x-powered-by",
+                  "value": "Express"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": \"1SWNUPTCG\",\n\"clientId\": \"C3Wloe0V5\",\n  \"created\": \"2026-10-07T11:55:11.391Z\",\n  \"customerName\": \"Vernon Fadel\",\n  \"products\": [\n    {\n      \"id\": 1001,\n      \"quantity\": 1\n    },\n    {\n      \"id\": 2002,\n      \"quantity\": 3\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get all orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get an order by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n    pm.expect(pm.response.code).to.eql(200);\n});\n\nlet response;\npm.test(\"Response body is JSON\", function () {\n    pm.response.to.be.json;\n    response = pm.response.json();\n});\n\npm.test(\"Order ID is there\", function () {\n       pm.expect(response).to.have.property('id');\n       pm.expect(response).to.have.property('products');\n       pm.expect(response.products).to.be.an('array');\n});\n\npm.test('Order ID format', function (){\n    pm.expect(response.id).to.match(/^[A-Z0-9]{9,10}$/);\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/:orderId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "{{orderId}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "The requested order",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "orderId"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{}"
+            }
+          ]
+        }
+      ],
+      "auth": {
+        "type": "apikey",
+        "apikey": [
+          {
+            "key": "value",
+            "value": "{{apiKey}}",
+            "type": "string"
+          },
+          {
+            "key": "key",
+            "value": "x-api-key",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "apiKey",
+      "value": "ENTER A VALID API KEY"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://valentinos-coffee.herokuapp.com"
+    },
+    {
+      "key": "productID",
+      "value": "1001"
+    },
+    {
+      "key": "orderId",
+      "value": ""
+    },
+    {
+      "key": "customerName",
+      "value": ""
+    }
+  ]
+}
