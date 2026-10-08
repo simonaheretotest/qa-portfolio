@@ -1,0 +1,36 @@
+name: API Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:      # lets you start a run manually from the Actions tab
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Newman and HTML reporter
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Run Postman collection
+        run: |
+          newman run automation/postman/valentinos-coffee.postman_collection.json \
+            -r cli,htmlextra \
+            --reporter-htmlextra-export reports/api-test-report.html
+
+      - name: Upload HTML report
+        if: always()      # upload the report even when tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-report
+          path: reports/api-test-report.html
