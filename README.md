@@ -2,8 +2,6 @@
 
 QA Engineer | Kaunas, Lithuania | Open to remote roles
 
-![API Tests](https://github.com/simonaheretotest/qa-portfolio/actions/workflows/postman.yml/badge.svg)
-
 ## About
 QA intern with hands-on experience testing a commercial multi-module web application in a real Agile team environment.
 Completed 54-hour accredited Application Testing programme (CodeAcademy, March 2026).
