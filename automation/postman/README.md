@@ -1,8 +1,6 @@
    # Postman API Tests – Valentino's Coffee
 # API Test Automation – Valentino's Artisan Coffee House API
 
-![API Tests](https://github.com/simonaheretotest/qa-portfolio/actions/workflows/postman.yml/badge.svg)
-
 Automated API tests for the [Valentino's Artisan Coffee House API](https://valentinos-coffee.herokuapp.com), a demo REST API for products, clients and orders. Built in Postman and run automatically with **Postman CLI** in **GitHub Actions** on every push.
 
 ## What is tested
