@@ -14,6 +14,12 @@ Automated API tests for the [Valentino's Artisan Coffee House API](https://valen
 | orders | `POST /orders` | Status 201, customer name matches request, order ID format, **JSON schema** |
 | orders | `GET /orders` | Status 200 |
 | orders | `GET /orders/:orderId` | Status 200, order ID and products present, order ID format |
+| products | GET /products?limit=3 | Max 3 products returned |
+| products | GET /products?category=coffee | All results have category “coffee” |
+| products | GET /products/9999 | 404 for nonexistent product |
+| clients | POST /clients (no email) | 400 for missing required field |
+| orders | PATCH /orders/:orderId | 404 — method not supported |
+| orders | DELETE /orders/:orderId | 404 — method not supported |
 
 ## Techniques used
 
