@@ -12,6 +12,7 @@ ISTQB CTFL v4.0 certified, September 2026, score 85%.
 - Bug reports with full reproduction steps, severity and priority
 - Test plan documentation
 - [Automated API tests](automation/postman/) – Postman collection with JSON schema validation and request chaining, run automatically in GitHub Actions
+- [SQL queries](sql/qa-queries.sql) – SELECT, WHERE, JOIN and COUNT queries used to verify database state after app actions
 
 ## Tools and technologies
 
@@ -26,6 +27,8 @@ ISTQB CTFL v4.0 certified, September 2026, score 85%.
 | Postman | API testing — REST endpoints, test scripts, JSON schema validation, mock servers |
 | Postman CLI / Newman | Running API test collections from the command line |
 | GitHub Actions | CI/CD — automated API test runs on every push |
+| SQL (MySQL) | Database verification — checking records match expected app behaviour |
+
 
 ## Contact
 LinkedIn: [www.linkedin.com/in/simona-rokaite-099175223](https://www.linkedin.com/in/simona-rokaite-099175223)
