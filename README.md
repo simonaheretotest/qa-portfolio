@@ -28,6 +28,7 @@ ISTQB CTFL v4.0 certified, September 2026, score 85%.
 | Postman CLI / Newman | Running API test collections from the command line |
 | GitHub Actions | CI/CD — automated API test runs on every push |
 | SQL (MySQL) | Database verification — checking records match expected app behaviour |
+| Rollbar | Error monitoring — reading stack traces, tracking error frequency post-deployment |
 
 
 ## Contact
