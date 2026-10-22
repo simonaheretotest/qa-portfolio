@@ -13,6 +13,8 @@ Manual QA audit of the INTUS Windows public website and associated subdomains. T
 
 Issues are logged as GitHub Issues with severity labels, steps to reproduce, screenshots, and expected vs. actual behavior.
 
+**Total issues found: 10**
+
 ---
 
 ## Severity Labels
@@ -28,18 +30,18 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 
 ## Issues by Page
 
-| Page | Issues |
-|---|---|
-| /myintus | CTA buttons lead to different destinations |
-| /careers | Typo "Competive salary" · Internal alt text exposed publicly |
-| /service | "Testings" in request type dropdown |
-| /retrofit-windows | Consultation button goes to wrong page · "Bentonville, AR AR" duplicate state code |
-| /faq | Broken "here" link returns 404 |
-| /about-us | "LEED Green" is not a valid certification level |
-| /gc-and-installers | Page body completely empty |
-| /architects-and-engineers | "NYC and NYC" repeated in testimonial |
-| my.intuswindows.com | Password reset sends to unregistered email |
-| bim.intuswindows.com | OG social image hosted on third-party domain |
+| # | Page | Issue | Severity |
+|---|---|---|---|
+| 1 | /myintus | CTA buttons lead to different destinations | High |
+| 2 | /myintus | "MyINTUS" and "My INTUS" used inconsistently across all pages | Medium |
+| 3 | /careers | Typo: "Competive salary" in benefits list | Medium |
+| 4 | /careers | Internal production note exposed in image alt text | Medium |
+| 5 | /careers | Duplicate "Inside Sales Representative" job listing | Medium |
+| 6 | /service | "Testings" in request type dropdown | Medium |
+| 7 | /retrofit-windows | "Schedule Free Consultation" button leads to Lunch & Learn page | High |
+| 8 | /retrofit-windows | State code "AR" duplicated on project card ("Bentonville, AR AR") | Low |
+| 9 | /faq | "here" link in colors answer returns 404 | High |
+| 10 | my.intuswindows.com | Password reset accepts unregistered emails and invalid formats | High |
 
 ---
 
@@ -50,3 +52,10 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 - Performance / load testing
 - Backend API endpoints
 - help.intuswindows.com knowledge base content
+
+---
+
+- ## Project Board
+
+All issues are tracked on the GitHub Project board:  
+👉 https://github.com/users/simonaheretotest/projects/1
