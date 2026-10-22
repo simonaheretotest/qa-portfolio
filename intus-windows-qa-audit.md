@@ -3,17 +3,17 @@
 **Auditor:** Simona Rokaitė-Jankienė  
 **Scope:** intuswindows.com, my.intuswindows.com, bim.intuswindows.com  
 **Audit date:** October 2026  
-**Environment:** macOS Sequoia 15.1 · Safari 18.1 · Chrome 130 · Firefox 131
+**Environment:** macOS Sequoia 15.1 · Safari 18.1 · Chrome 130 · Firefox 131 · Lighthouse 13.4.1
 
 ---
 
 ## Overview
 
-Manual QA audit of the INTUS Windows public website and associated subdomains. The audit covers content accuracy, UI/UX consistency, accessibility, SEO metadata, authentication flows, and cross-page terminology.
+Manual QA audit of the INTUS Windows public website and associated subdomains. The audit covers content accuracy, UI/UX consistency, accessibility, performance, SEO metadata, authentication flows, and cross-page terminology.
 
 Issues are logged as GitHub Issues with severity labels, steps to reproduce, screenshots, and expected vs. actual behavior.
 
-**Total issues found: 10**
+**Total issues found: 11**
 
 ---
 
@@ -22,7 +22,7 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 | Label | Meaning |
 |---|---|
 | `critical` | Broken page, data loss, or completely non-functional feature |
-| `high` | Significant user-facing defect — impacts conversion or trust |
+| `high` | Significant user-facing defect — impacts conversion, trust, or SEO |
 | `medium` | Content error, inconsistency, or UX friction |
 | `low` | Minor typo, cosmetic issue, or SEO improvement |
 
@@ -42,6 +42,16 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 | 8 | /retrofit-windows | State code "AR" duplicated on project card ("Bentonville, AR AR") | Low |
 | 9 | /faq | "here" link in colors answer returns 404 | High |
 | 10 | my.intuswindows.com | Password reset accepts unregistered emails and invalid formats | High |
+| 11 | / (homepage) | Speed Index 9.0s — over 3× slower than benchmark | High |
+
+---
+
+## Testing Methods
+
+- Manual browser testing (Safari, Chrome, Firefox)
+- Lighthouse automated audit (Performance, Accessibility, SEO, Best Practices)
+- Auth0 login and password reset flow testing
+- Cross-page content and terminology review
 
 ---
 
@@ -49,7 +59,6 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 
 - Authenticated portal features beyond login/password reset flow
 - Mobile app (iOS/Android)
-- Performance / load testing
 - Backend API endpoints
 - help.intuswindows.com knowledge base content
 
