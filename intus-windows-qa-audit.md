@@ -55,7 +55,7 @@ Issues are logged as GitHub Issues with severity labels, steps to reproduce, scr
 
 ---
 
-- ## Project Board
+## Project Board
 
 All issues are tracked on the GitHub Project board:  
 👉 https://github.com/users/simonaheretotest/projects/1
