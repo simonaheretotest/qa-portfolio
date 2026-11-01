@@ -1,6 +1,12 @@
 name: Automated API tests using Postman CLI
 
-on: push
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'automation/postman/**'
+      - '.github/workflows/postman.yml'
+  workflow_dispatch:
 
 jobs:
   automated-api-tests:
